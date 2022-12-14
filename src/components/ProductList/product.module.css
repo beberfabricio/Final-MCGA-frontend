@@ -1,0 +1,48 @@
+.product{
+    background-color: lightgray;
+    width: 80%;
+    max-width: 250px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 20px;
+    margin: 10px 15px;
+    border: 2px solid;
+    border-radius: 20px;
+}
+
+.product p{
+    font-style: oblique;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.product h3{
+    font-style: oblique;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.product .deleted{
+    color:red;
+}
+
+.product span{
+    color: green;
+    font-weight: bold;
+}
+
+.product .description{
+    text-align: center;
+    margin: 20px 0;
+    font-weight: 400;
+}
+
+.product h3{
+    color:blue;
+}
+
+.product .btn{
+    align-self: flex-end;
+}

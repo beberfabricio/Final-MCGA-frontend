@@ -10,6 +10,7 @@ function App() {
       <Routes>
         <Route path='/home' element={ <Home /> } />
         <Route path='/products' element= { <Products /> } />
+        <Route path='*' element={ <Navigate to='/home' /> } />
       </Routes>
     </Layout>
   );
