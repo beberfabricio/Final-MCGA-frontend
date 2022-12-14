@@ -15,7 +15,6 @@ const Form = () => {
 
     const onSubmit = async (data) => {    
         await dispatch(getUsersThunk(data));
-        const status = JSON.parse(localStorage.data).msg;
         setSuccess(true)
     };
 
