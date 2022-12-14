@@ -5,7 +5,6 @@ import {
 } from './actions'
 
 export const getUsersThunk = (data) => async (dispatch) => {
-    console.log(JSON.stringify(data))
     dispatch(getUserLoading());
     try {
         const response = await fetch('https://final-mcga-backend.vercel.app/users/login', {
