@@ -21,7 +21,7 @@ const Button = (props) => {
         <div className={styles.modalContainer}>
         <h2 className={styles.modalTitle}>Confirmación</h2>
         <p className={styles.modalText}>¿Seguro que quieres eliminar este producto?</p>
-        <button onClick={deleteProduct} className={styles.modalBtn}>Aceptar</button>
+        <button onClick={deleteProduct} className={styles.modalBtn}>Confirmar</button>
         <button onClick={toggleModal} className={styles.modalBtn}>Cancelar</button>
         </div>
     )
