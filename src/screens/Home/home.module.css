@@ -1,0 +1,19 @@
+.content{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+    transition: color .3s;
+    margin-top: 30px;
+}
+
+.content a:hover{
+    color: #C8C8C8;
+    cursor: pointer;
+}
