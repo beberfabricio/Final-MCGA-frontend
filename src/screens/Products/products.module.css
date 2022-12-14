@@ -42,17 +42,6 @@
     max-width: 1300px;
 }
 
-.loadingText{
-    width: 100%;
-    text-align: center;
-    font-style: oblique;
-}
-
 .noProducts{
     font-style: oblique;
-}
-
-.gif{
-    width: 100%;
-    max-width: 500px;
 }

@@ -8,6 +8,10 @@ import EditProduct from './screens/EditProduct'
 import Login from './screens/Login'
 
 function App() {
+  if (!localStorage.data) {
+    localStorage.setItem('data','{"msg":"Non-logged user"}')
+  }
+  
   return (
     <Layout>
       <Routes>

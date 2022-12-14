@@ -9,7 +9,8 @@ textarea{
     margin:auto;
     width: 50%;
     max-width: 400px;
-    padding: 50px;
+    padding: 25px 50px;
+    margin-top: 50px;
     border-radius: 10px;
     box-shadow: 0px 5px 10px;
     text-align: center;
@@ -121,24 +122,4 @@ textarea{
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     padding: 2px;
-}
-
-.content{
-    margin: auto;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 0 50px;
-}
-
-.savingText{
-    width: 100%;
-    text-align: center;
-    font-style: oblique;
-}
-
-.gif{
-    width: 100%;
-    max-width: 500px;
 }

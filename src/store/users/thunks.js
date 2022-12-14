@@ -18,7 +18,6 @@ export const getUsersThunk = (data) => async (dispatch) => {
         localStorage.setItem("data", JSON.stringify(json));
         if (response.status !== 200) 
             return dispatch(getUserError(json));
-        
         dispatch(getUser(json));
     } catch (error) {
         dispatch(getUserError(error));

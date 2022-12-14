@@ -8,6 +8,7 @@ const Button = (props) => {
     const dispatch = useDispatch();
 
     const handleClick = () => {
+        const user = JSON.parse(localStorage.data)
         switch(props.type){
             case 'edit':
                 navigate(`/products/edit/${props.product._id}`)

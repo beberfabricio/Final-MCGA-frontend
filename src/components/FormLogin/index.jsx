@@ -4,10 +4,11 @@ import { getUsersThunk } from '../../store/users/thunks'
 import { useSelector, useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import styles from '../Form/form.module.css'
+import Gif from '../Gif'
 
 const Form = () => {
     const [success, setSuccess] = useState(false);
-    const usersSelector = useSelector((state) => state.user)
+    const usersSelector = useSelector((state) => state.users)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -19,24 +20,13 @@ const Form = () => {
         setSuccess(true)
     };
 
-    // if (usersSelector.isLoading) {
-    //     return(
-    //         <div className={styles.content}>
-    //             <h1 className={styles.savingText}>Loging in...</h1>
-    //             <img className={styles.gif} src={'../img/loading.gif'} alt={'loading logo'} />
-    //         </div>
-    //     )
-    // }
+    if (usersSelector.isLoading) {
+        return <Gif status={'Loading'} title={'Loging in...'} width={250} />
+    }
 
-
-    // if (usersSelector.isError) {
-    //     return(
-    //         <div className={styles.content}>
-    //             <h1 className={styles.savingText}>Error loging in</h1>
-    //             <img className={styles.gif} src={'../img/error.gif'} alt={'error logo'} />
-    //         </div>
-    //     )
-    // }
+    if (success && usersSelector.data.msg === 'User logged') {
+        navigate('/products')
+    }
 
     return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
@@ -55,6 +45,10 @@ const Form = () => {
             </fieldset>
 
             <button className={styles.formBtn} type="submit">Iniciar sesión</button>
+
+            { usersSelector.isError ? <span className={styles.formLblError}>{usersSelector.data.msg}</span>
+            : <></>
+            }
         </div>
     </form>
   )

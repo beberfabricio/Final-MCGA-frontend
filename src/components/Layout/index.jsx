@@ -1,8 +1,14 @@
 import React from "react"
 import styles from "./layout.module.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Layout = ({children}) => {
+    const user = JSON.parse(localStorage.data)
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.data = '{"msg":"Non-logged user"}'
+        navigate('/');
+    }
     return(
         <div>
             <header className={styles.header}>
@@ -10,7 +16,10 @@ const Layout = ({children}) => {
                 <nav>                    
                     <Link to='/home'>Home</Link>
                     <Link to='/products'>Products</Link>
-                    <Link to='/login'>Login</Link>
+                    { user.msg === 'User logged' ? <button onClick={handleLogout} className={styles.logout}>Logout</button>
+                    : <Link to='/login'>Login</Link>
+                    }
+                    
                 </nav>
             </header>
             {children}

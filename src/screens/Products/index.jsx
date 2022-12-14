@@ -4,9 +4,11 @@ import ProductList from '../../components/ProductList'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadDataThunk } from '../../store/products/thunks'
 import { Link } from 'react-router-dom'
+import Gif from '../../components/Gif'
 
 const Products = () => {
   const productsSelector = useSelector(state => state.products)
+  const user = JSON.parse(localStorage.data)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,21 +16,11 @@ const Products = () => {
   }, [dispatch])
 
   if (productsSelector.isLoading) {
-    return(
-      <div className={styles.content}>
-      <h1 className={styles.loadingText}>Loading products...</h1>
-      <img className={styles.gif} src={'../img/loading.gif'} alt={'loading logo'} />
-    </div>
-    )
+    return <Gif status={'Loading'} title={'Loading products...'} width={300} />
   }
 
   if (productsSelector.isError) {
-    return(
-      <div className={styles.content}>
-      <h1 className={styles.loadingText}>Error loading products</h1>
-      <img className={styles.gif} src={'../img/error.gif'} alt={'error logo'} />
-    </div>
-    )
+    return <Gif status={'Error'} title={'Error loading products'} width={250} />
   }
 
   if (productsSelector.data.length === 0) {
@@ -43,15 +35,18 @@ const Products = () => {
     )
   }
 
-  return (
+    return (
     <div className={styles.content}>
       <h1 className={styles.title}>Products View</h1>
       <div className={styles.productsList}>
         <ProductList products={productsSelector.data} />
       </div>
-      <Link to='/products/add'>Nuevo producto</Link>
+      { user.msg === 'User logged' ? <Link to='/products/add'>Nuevo producto</Link>
+      : <></>
+      }
     </div>
   )
+
 }
 
-export default Products
+export default Products;

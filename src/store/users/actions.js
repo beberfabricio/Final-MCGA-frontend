@@ -24,10 +24,3 @@ export const getUserError = (data) => {
         payload: data
     };
 };
-
-export const logoutUser = () => {
-    return {
-        type: GET_USER_FULLFILLED,
-        payload: null
-    };
-};

@@ -30,6 +30,22 @@
     cursor: pointer;
 }
 
+.header nav .logout {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: none;
+    text-decoration: none;
+    font-size: 22px;
+    color: #fff;
+    transition: color .3s;
+}
+
+.header nav .logout:hover {
+    color: #000;
+    cursor: pointer;
+}
+
 .footer{
     width: 100%;
     height: 50px;

@@ -23,7 +23,7 @@ const usersReducer = (state = INITIAL_STATE, action) => {
         case GET_USER_LOADING:
             return {
                 ...state,
-                isLoading: action.payload,
+                isLoading: true,
             }
 
         case GET_USER_REJECTED: 

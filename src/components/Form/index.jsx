@@ -4,6 +4,7 @@ import { addDataThunk, editDataThunk } from '../../store/products/thunks'
 import { useSelector, useDispatch } from 'react-redux'
 import { useForm } from 'react-hook-form'
 import styles from './form.module.css'
+import Gif from '../Gif'
 
 const Form = (props) => {
     const [success, setSuccess] = useState(false);
@@ -36,22 +37,12 @@ const Form = (props) => {
     }
 
     if (productsSelector.isLoading) {
-        return(
-            <div className={styles.content}>
-                <h1 className={styles.savingText}>Saving product...</h1>
-                <img className={styles.gif} src={'../img/loading.gif'} alt={'loading logo'} />
-            </div>
-        )
+        return <Gif status={'Loading'} title={'Saving product...'} width={250} />
     }
 
 
     if (productsSelector.isError) {
-        return(
-            <div className={styles.content}>
-                <h1 className={styles.savingText}>Error saving product</h1>
-                <img className={styles.gif} src={'../img/error.gif'} alt={'error logo'} />
-            </div>
-        )
+        return <Gif status={'Error'} title={'Error saving products'} width={250} />
     }
 
     if (productsSelector.data && success) {

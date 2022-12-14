@@ -3,7 +3,8 @@ import styles from './product.module.css'
 import Button from '../Button'
 
 const Product = ({products}) => {
-    console.log(products)
+    const user = JSON.parse(localStorage.data)
+
     return (
     <>
     {
@@ -15,10 +16,14 @@ const Product = ({products}) => {
                 <p>Price: <span>${x.price}</span></p>
                 <p>Stock: <span>{x.stock}</span></p>
                 <p>Category: <span>{x.category}</span></p>
+                { user.msg === 'User logged' ? 
                 <span className={styles.btn}>
                     <Button product={x} type={'edit'} />
                     <Button product={x} type={'delete'} />
                 </span>
+                : <></>
+                }
+
             </div>
         )}
     )
