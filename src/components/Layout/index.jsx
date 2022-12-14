@@ -10,6 +10,7 @@ const Layout = ({children}) => {
                 <nav>                    
                     <Link to='/home'>Home</Link>
                     <Link to='/products'>Products</Link>
+                    <Link to='/login'>Login</Link>
                 </nav>
             </header>
             {children}

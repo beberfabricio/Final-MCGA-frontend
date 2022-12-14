@@ -27,12 +27,14 @@ export const loadDataThunk = () => async (dispatch) => {
 }
 
 export const addDataThunk = (product) => async (dispatch) => {
+    const userLogged = JSON.parse(localStorage.data);
     try {
         dispatch(addDataLoading(true));
         const response = await fetch('https://final-mcga-backend.vercel.app/products/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': userLogged.token
             },
             body: JSON.stringify(product),
         });
@@ -46,34 +48,39 @@ export const addDataThunk = (product) => async (dispatch) => {
 }
 
 export const editDataThunk = (product) => async (dispatch) => {
+    const userLogged = JSON.parse(localStorage.data);
     try {
         dispatch(editDataLoading(true));
         const response = await fetch(`https://final-mcga-backend.vercel.app/products/update/${product._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': userLogged.token
             },
             body: JSON.stringify(product),
         });
         const productResponse = await response.json();
-        if (response.status !== 200) throw new Error('Error');
         dispatch(editData(productResponse));
         dispatch(editDataLoading(false));
+        if (response.status !== 200) throw new Error('Error');
     } catch (error) {
         dispatch(editDataError());
     }
 }
 
 export const deleteDataThunk = (id) => async (dispatch) => {
+    const userLogged = JSON.parse(localStorage.data);
     try {
         dispatch(deleteDataLoading(true));
         const response = await fetch(`https://final-mcga-backend.vercel.app/products/delete/${id}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOTkzNmRkMDkyYjE0MTIxN2FlZDM2NyIsImlhdCI6MTY3MDk4NTUyMywiZXhwIjoxNjcwOTg2MTIzfQ.o_eQ-3jq9ZFi2w8VgfdmDDcJ9HmrBWoN3v5-6dB4E2s',
+                'Authorization': userLogged.token
             },
         });
-        if (response.status !== 200) throw new Error(response.json());
+        if (response.status !== 200) {
+            throw new Error(response.json());
+        }
         dispatch(deleteData(id));
         dispatch(deleteDataLoading(false));
         dispatch(loadDataThunk());
