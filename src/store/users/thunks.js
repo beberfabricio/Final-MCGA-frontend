@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import {
     getUser,    
     getUserLoading,
@@ -20,5 +21,25 @@ export const getUsersThunk = (data) => async (dispatch) => {
         dispatch(getUser(json));
     } catch (error) {
         dispatch(getUserError(error));
+    }
+}
+
+export const verifyTokenThunk = () => async () => {
+    const navigate = useNavigate();
+    const userLogged = JSON.parse(localStorage.data);
+    try {
+        const response = await fetch('https://final-mcga-backend.vercel.app/users/verifyToken', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': userLogged.token
+            }
+        })
+        if (response.status === 401) {
+            localStorage.setItem('data','{"msg":"Non-logged user"}')
+            navigate('/login');
+        }
+    } catch (error) {
+        return;
     }
 }

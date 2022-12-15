@@ -6,12 +6,18 @@ import Products from './screens/Products'
 import AddProduct from './screens/AddProduct'
 import EditProduct from './screens/EditProduct'
 import Login from './screens/Login'
+import { verifyTokenThunk } from './store/users/thunks'
+import { useDispatch } from 'react-redux'
 
 function App() {
+  const dispatch = useDispatch();
+  
   if (!localStorage.data) {
     localStorage.setItem('data','{"msg":"Non-logged user"}')
+  } else if (JSON.parse(localStorage.data).msg === 'User logged') {
+    dispatch(verifyTokenThunk());
   }
-  
+
   return (
     <Layout>
       <Routes>
